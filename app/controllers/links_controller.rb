@@ -1,6 +1,7 @@
 class LinksController < ApplicationController
   def index
     @links = Link.all
+    @hotlinks = Link.order_by_score
   end
 
   def new

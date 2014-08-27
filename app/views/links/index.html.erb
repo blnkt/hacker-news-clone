@@ -1,8 +1,17 @@
 <div class="page-header">
-  <h1>Hacker News <small>Top stories</small></h1>
+  <h1>Hacker News <small>Trending stories</small></h1>
 </div>
+
+<h4>Hot Links</h4>
 <ul>
-  <% @links.each do |link| %>
-    <li><%= link_to "#{link.url}", link_path(link) %></li>
+  <% @hotlinks.each do |link| %>
+    <li><%= link_to "#{link.url}", link_path(link) %> (<%= link.votes %> votes)</li>
+  <% end %>
+</ul>
+
+<h4>All-time best links</h4>
+<ul>
+  <% @links.order(:votes).reverse.each do |link| %>
+    <li><%= link_to "#{link.url}", link_path(link) %> (<%= link.votes %> votes)</li>
   <% end %>
 </ul>

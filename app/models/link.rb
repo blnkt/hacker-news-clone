@@ -7,6 +7,15 @@ class Link < ActiveRecord::Base
   self.update(votes: self.votes + 1)
   end
 
+  def score
+    days_elapsed = (Time.new - self.created_at)/60.0/60/24
+    self.votes/days_elapsed
+  end
+
+  def self.order_by_score
+    self.all.sort_by {|link| link.score }.reverse
+  end
+
   private
   def url_checker
     self.url.delete!("http://") if self.url.start_with?("http://")
