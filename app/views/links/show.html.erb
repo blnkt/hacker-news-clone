@@ -2,4 +2,12 @@
   <h1>Link <small><a href="http://<%= @link.url %>" target="_blank"><%= @link.url %></a></small></h1>
 </div>
 
-<p><%= link_to "Edit link", edit_link_path, :class => "btn btn-primary" %></p>
+<ul>
+  <% @link.comments.take(@link.comments.length-1).each do |comment| %>
+    <li><%= comment.text %> <%= link_to "Destroy comment?", link_comment_path(comment, comment.link), data: {method: "delete"}%></li>
+  <% end %>
+<ul>
+
+<%= render('comments/form') %>
+
+<p><%= link_to "Edit link", edit_link_path(@link), :class => "btn btn-primary" %></p>
