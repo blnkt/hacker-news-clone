@@ -1,6 +1,7 @@
 class Link < ActiveRecord::Base
   before_save :url_checker
-  has_many :comments
+  # has_many :comments
+  has_many :comments, as: :commentable
   validates :url, :presence => true
 
   def vote

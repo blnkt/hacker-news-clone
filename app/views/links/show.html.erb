@@ -9,8 +9,8 @@
 </div>
 
 <ul>
-  <% @link.comments.take(@link.comments.length-1).each do |comment| %>
-    <li><%= comment.text %> <%= link_to "Destroy comment?", link_comment_path(comment, comment.link), data: {method: "delete"}%></li>
+  <% @comments.each do |comment| %>
+    <li><%= comment.text %> <%= link_to "Destroy comment?", link_comment_path(comment.commentable, comment), data: {method: "delete"}%></li>
   <% end %>
 <ul>
 
