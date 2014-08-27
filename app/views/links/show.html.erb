@@ -1,8 +1,9 @@
 <div class="page-header">
-  <%= form_tag(vote_path, method: "put") do %>
+  <%= form_tag(vote_path(@link), method: "put") do %>
     <h1>Link
       <small><a href="http://<%= @link.url %>" target="_blank"><%= @link.url %></a></small>
       <%= submit_tag "Vote up", :class => "btn-sm btn-warning" %>
+      <small><%=@link.votes%> votes</small>
     </h1>
   <% end %>
 </div>
